@@ -15,7 +15,6 @@ module Char_phoneme = struct
   let to_char t = match t with Vowel c | Consonant c -> c
 end
 
-(* [C](VC){m}[V] *)
 let stem word =
   let rec drop_y w =
     match String.chop_prefix ~prefix: "y" w with
@@ -87,17 +86,8 @@ let rule_with_entry ~entry condition production =
       match condition ~word with
       | false -> `Rule_fail
       | true -> `Rule_match (production ~word)
-
+      
 let step rules ~word =
-  let rec iter = function
-  | [] -> word
-  | r :: tl ->
-    match r word with
-    | `Rule_match w ->  w
-    | `Rule_ignore -> iter tl
-  in iter rules
-
-let step_with_entry rules ~word =
   let rec iter = function
   | [] -> word
   | r :: tl ->
@@ -237,17 +227,18 @@ let step_4 word =
                     (default_condition suffix)
                     (replace_suffix suffix "") in
   let rules =
-    List.concat [List.map ~f: default_rule ["al"; "ance"; "ence"; "er"; "ic"; "able";
-                                            "ible"; "ant"; "ement"; "ment"; "ent"];
+    List.concat [List.map ~f: default_rule ["al"; "ance"; "ence"; "er"; "ic";
+                                            "able"; "ible"; "ant"; "ement";
+                                            "ment"; "ent"];
                  [rule (stem_suffix_cond ~suffix: "ion"
                                          ~stem_f: (fun s ->
                                                      (measure s > 1) &&
                                                      (ends_with "s" ~word: s ||
                                                       ends_with "t" ~word: s)))
                        (replace_suffix "ion" "")];
-                 List.map ~f: default_rule ["ou"; "ism"; "ate"; "iti"; "ous"; "ive"; 
-                                            "ize"]]
-  in step_with_entry ~word rules
+                 List.map ~f: default_rule ["ou"; "ism"; "ate"; "iti"; "ous";
+                                            "ive"; "ize"]]
+  in step ~word rules
 
 let step_5a word =
   let rules =
@@ -259,7 +250,8 @@ let step_5a word =
   in step ~word rules
 
 let step_5b word =
-  step ~word [rule (fun ~word -> (measure word > 1) && (ends_with ~word "ll")) drop_last]
+  step ~word [rule (fun ~word -> (measure word > 1) && (ends_with ~word "ll"))
+                   drop_last]
 
 let run word =
   let word = String.lowercase word in
