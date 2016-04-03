@@ -1,0 +1,27 @@
+OASISFormat: 0.4
+Name:        stemmer
+Version:     0.0.1
+Synopsis:    An implementation of Porter stemming algorithm
+Homepage:    http://github.com/superkonduktr/stemmer
+Authors:     Lyosha Kuleshov <goodbyeairship@gmail.com>
+License:     MIT
+Plugins:     META (0.4), DevFiles (0.4)
+BuildTools:  ocamlbuild
+
+Library stemmer
+  Path: lib
+  Modules: Stemmer
+  BuildDepends: core, re2, threads, oUnit
+
+Executable stemmer_test
+  Path: test
+  MainIs: stemmer_test.ml
+  Install: false
+  Build$: flag(tests)
+  BuildDepends: core, oUnit, stemmer, threads
+  CompiledObject: best
+
+Test stemmer_test
+  WorkingDirectory: test
+  Run$: flag(tests)
+  Command: $test

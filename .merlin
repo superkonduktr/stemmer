@@ -1,0 +1,6 @@
+PKG core re2 ounit
+
+S lib
+B _build/lib
+
+FLG -short-paths

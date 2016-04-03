@@ -1,0 +1,16 @@
+let root =
+  let rec search path = match Sys.file_exists (path ^ "/.ocamlinit") with
+  | false -> search (Filename.dirname path)
+  | true -> path
+  in search (Sys.getcwd ())
+in Sys.chdir root;;
+
+#use "topfind";;
+#require "core";;
+#require "re2";;
+#require "ounit";;
+#directory "_build";;
+
+open Core.Std;;
+open Re2.Std;;
+open OUnit2;;

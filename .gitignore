@@ -1,0 +1,37 @@
+# General
+
+*.a
+*.annot
+*.cma
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.cmxs
+*.o
+*~
+.DS_Store
+
+# OCaml Build Working Directory
+
+_build/
+
+# OCaml Build Targets
+
+*.byte
+*.docdir
+*.mldylib
+*.mllib
+*.native
+*.odocl
+
+# Oasis Generated Files
+
+myocamlbuild.ml
+setup.data
+setup.log
+setup.ml
+_tags
+META
+Makefile
+configure
