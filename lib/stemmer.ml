@@ -1,4 +1,5 @@
 open Core.Std
+open Core_kernel.Std
 open Re2.Std
 
 module Char_phoneme = struct
@@ -32,9 +33,10 @@ let stem word =
      ")$"]
     |> String.concat |> Re2.create_exn in
   let apply pattern =
+    let open Core_kernel.Std in
     match Re2.find_first ~sub: (`Name pattern) re word with
-    | Core_kernel.Result.Error _ -> None
-    | Core_kernel.Result.Ok s -> Some s
+    | Result.Error _ -> None
+    | Result.Ok s -> Some s
   in
   let rec iter = function
   | [] -> ""

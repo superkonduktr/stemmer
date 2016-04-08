@@ -7,10 +7,12 @@ in Sys.chdir root;;
 
 #use "topfind";;
 #require "core";;
+#require "core_kernel";;
 #require "re2";;
 #require "ounit";;
 #directory "_build";;
 
 open Core.Std;;
+open Core_kernel.Std;;
 open Re2.Std;;
 open OUnit2;;

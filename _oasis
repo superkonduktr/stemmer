@@ -11,17 +11,16 @@ BuildTools:  ocamlbuild
 Library stemmer
   Path: lib
   Modules: Stemmer
-  BuildDepends: core, re2, threads, oUnit
+  BuildDepends: core, core_kernel, re2, threads, oUnit
 
 Executable stemmer_test
   Path: test
   MainIs: stemmer_test.ml
   Install: false
   Build$: flag(tests)
-  BuildDepends: core, oUnit, stemmer, threads
+  BuildDepends: core, core_kernel, oUnit, stemmer, threads
   CompiledObject: best
 
 Test stemmer_test
-  WorkingDirectory: test
   Run$: flag(tests)
-  Command: $test
+  Command: ./stemmer_test.native
