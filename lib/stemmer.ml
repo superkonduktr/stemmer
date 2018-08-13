@@ -88,7 +88,7 @@ let rule_with_entry ~entry condition production =
       match condition ~word with
       | false -> `Rule_fail
       | true -> `Rule_match (production ~word)
-      
+
 let step rules ~word =
   let rec iter = function
   | [] -> word
@@ -255,7 +255,7 @@ let step_5b word =
   step ~word [rule (fun ~word -> (measure word > 1) && (ends_with ~word "ll"))
                    drop_last]
 
-let run word =
+let stem word =
   let word = String.lowercase word in
   if String.length word < 3 then word
   else [step_1a; step_1b; step_1c; step_2; step_3; step_4; step_5a; step_5b]
