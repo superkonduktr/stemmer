@@ -2,7 +2,7 @@ OASISFormat: 0.4
 Name:        stemmer
 Version:     0.0.1
 Synopsis:    An implementation of Porter stemming algorithm
-Homepage:    http://github.com/superkonduktr/stemmer
+Homepage:    https://github.com/superkonduktr/stemmer
 Authors:     Lyosha Kuleshov <goodbyeairship@gmail.com>
 License:     MIT
 Plugins:     META (0.4), DevFiles (0.4)

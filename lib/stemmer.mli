@@ -92,4 +92,4 @@ val step_5b : string -> string
 
 (** Aggregated transformation. For any string of length > 2 passes it through
     all the steps. *)
-val run : string -> string
+val stem : string -> string
